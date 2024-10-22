@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     double height = MediaQuery.sizeOf(context).height;
     print("rebuild");
     var inputDecoration = InputDecoration(
-      hintText: "Name",
+      hintText: "Name1",
       filled: true,
       fillColor: Colors.grey[200],
     );
