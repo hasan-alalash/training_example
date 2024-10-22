@@ -17,47 +17,47 @@ class MyCatalog extends StatelessWidget {
   Widget build(BuildContext context) {
     /// ToDo build list view of _MyListItem items
     return Scaffold(
+      backgroundColor: Colors.blue[50],
       appBar: _MyAppBar(),
       body: ListView.builder(
-        padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           itemCount: items.length,
-          itemBuilder:(context,index){
+          itemBuilder: (context, index) {
             return _MyListItem(items[index]);
-          }
-      ),
+          }),
     );
   }
 }
 
 class _AddButton extends StatelessWidget {
   final Item item;
+
   const _AddButton({required this.item});
 
   @override
   Widget build(BuildContext context) {
     /// TODO listen to cart provider
 
-
     return Consumer<CartProvider>(
-  builder: (context, provider, child) {
-  return TextButton(
-      onPressed: () {
-        provider.addItem(item);
+      builder: (context, provider, child) {
+        return TextButton(
+          onPressed: () {
+            provider.addItem(item);
+          },
+          style: ButtonStyle(
+            overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+              if (states.contains(WidgetState.pressed)) {
+                return Theme.of(context).primaryColor;
+              }
+              return null; // Defer to the widget's default.
+            }),
+          ),
+          child: provider.isInCart(item)
+              ? const Icon(Icons.check, semanticLabel: 'ADDED')
+              : const Text('ADD'),
+        );
       },
-      style: ButtonStyle(
-        overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
-          if (states.contains(WidgetState.pressed)) {
-            return Theme.of(context).primaryColor;
-          }
-          return null; // Defer to the widget's default.
-        }),
-      ),
-      child: provider.isInCart(item)
-          ? const Icon(Icons.check, semanticLabel: 'ADDED')
-          : const Text('ADD'),
     );
-  },
-);
   }
 }
 
@@ -72,14 +72,14 @@ class _MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               /// TODO open cart screen
-              Navigator.push(context, MaterialPageRoute(builder: (navigatorContext){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (navigatorContext) {
                 ;
-                return MyCart(
-                );
+                return MyCart();
               }));
             },
           ),
-          builder: (context,provider,child){
+          builder: (context, provider, child) {
             return Badge(
               label: Text("${provider.cart.length}"),
               alignment: AlignmentDirectional.topStart,
@@ -88,13 +88,12 @@ class _MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-
       ],
     );
   }
 
   @override
-  Size get preferredSize =>const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 class _MyListItem extends StatelessWidget {
