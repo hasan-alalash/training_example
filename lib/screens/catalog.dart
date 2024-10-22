@@ -20,7 +20,7 @@ class MyCatalog extends StatelessWidget {
       backgroundColor: Colors.blue[120],
       appBar: _MyAppBar(),
       body: ListView.builder(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.all(30),
           itemCount: items.length,
           itemBuilder: (context, index) {
             return _MyListItem(items[index]);
