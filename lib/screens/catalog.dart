@@ -17,10 +17,10 @@ class MyCatalog extends StatelessWidget {
   Widget build(BuildContext context) {
     /// ToDo build list view of _MyListItem items
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.blue[120],
       appBar: _MyAppBar(),
       body: ListView.builder(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(40),
           itemCount: items.length,
           itemBuilder: (context, index) {
             return _MyListItem(items[index]);
