@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-      ChangeNotifierProvider(
+  runApp(ChangeNotifierProvider(
     create: (BuildContext context) => CartProvider(),
     child: MyApp(),
   ));
@@ -23,6 +22,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.light,
       home: LoginScreen(),
     );
   }

@@ -72,11 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: height / 12,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      nameController.clear();
-                    },
-                    child: Icon(Icons.clear)),
-                ElevatedButton(
                   onPressed: () async {
                     if (formKey.currentState?.validate() ?? false) {
                       Navigator.push(context,
